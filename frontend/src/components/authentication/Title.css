@@ -1,0 +1,36 @@
+.title-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 10px 0 0;
+  box-sizing: border-box;
+}
+
+.title-left {
+  display: flex;
+  align-items: center; /* 图标和文字垂直居中 */
+  gap: 5px;           /* 图标与文字间距 */
+  flex: 1 1 auto;      /* 占据左侧剩余空间 */
+  min-width: 0;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+}
+
+.title {
+  font-family: Arial, sans-serif;
+  font-size: 25px;
+  color: #8a6746;
+  font-weight: bolder;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lang {
+  margin-left: auto;  /* 把语言选择框推到右边 */
+  width: 150px;
+  flex-shrink: 0;
+}
