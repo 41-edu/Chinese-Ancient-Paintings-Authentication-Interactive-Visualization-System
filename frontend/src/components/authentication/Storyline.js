@@ -804,7 +804,7 @@ const Storyline = ({ nodesData = [], linksData = [] }) => {
               <div style="border-bottom: 1px solid #ccc; width: 190px; margin-top: 5px;"></div>
               <div style="display: flex; align-items: center; margin-top: 5px;justify-content: space-between;">
                 <p style="font-size: 12px; margin-right: 5px; font-weight: bold;">${key}</p>
-                <img src="../../assets/img/reference.png" alt="Icon" style="width: 17px; height: 20px; margin-right: 5px; cursor: pointer;" onclick="window.open('${url}', '_blank');" />
+                <img src="${process.env.PUBLIC_URL}/assets/img/reference.png" alt="Icon" style="width: 17px; height: 20px; margin-right: 5px; cursor: pointer;" onclick="window.open('${url}', '_blank');" />
               </div>
             `;
 
