@@ -96,6 +96,7 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env.PUBLIC_URL': JSON.stringify(process.env.PUBLIC_PATH || '/Chinese-Ancient-Paintings-Authentication-Interactive-Visualization-System'),
+      'process.env.DEEPSEEK_API_KEY': JSON.stringify(process.env.DEEPSEEK_API_KEY || ''),
     }),
   ],
 };

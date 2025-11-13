@@ -36,6 +36,8 @@ jobs:
           yarn install --frozen-lockfile
           
       - name: Build
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
         run: |
           cd frontend
           yarn build
