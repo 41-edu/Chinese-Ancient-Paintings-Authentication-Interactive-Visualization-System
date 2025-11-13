@@ -10,13 +10,13 @@ const Storyline = ({ nodesData = [], linksData = [] }) => {
 
   // 预先加载自定义的图像（PNG/SVG素材）
   const nodeImages = {
-    "P": "../../assets/img/painting.png",      // 画作
-    "S": "../../assets/img/seal.png",          // 印章
-    "seal": "../../assets/img/seal.png",       // 印章（新格式）
-    "SS": "../../assets/img/seal.png",         // 标准印章（使用印章图标）
-    "A": "../../assets/img/people.png",        // 作者
-    "R": "../../assets/img/references.png",    // 参考文献
-    "O": "../../assets/img/painting.png"       // 其他画作
+    "P": `${process.env.PUBLIC_URL}/assets/img/painting.png`,      // 画作
+    "S": `${process.env.PUBLIC_URL}/assets/img/seal.png`,          // 印章
+    "seal": `${process.env.PUBLIC_URL}/assets/img/seal.png`,       // 印章（新格式）
+    "SS": `${process.env.PUBLIC_URL}/assets/img/seal.png`,         // 标准印章（使用印章图标）
+    "A": `${process.env.PUBLIC_URL}/assets/img/people.png`,        // 作者
+    "R": `${process.env.PUBLIC_URL}/assets/img/references.png`,    // 参考文献
+    "O": `${process.env.PUBLIC_URL}/assets/img/painting.png`       // 其他画作
   }
 
   useEffect(() => {
