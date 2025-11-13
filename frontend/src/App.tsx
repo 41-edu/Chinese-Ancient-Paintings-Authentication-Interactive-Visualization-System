@@ -105,14 +105,14 @@ const App = () => {
     };
     initModel();
 
-    // Load the image
-    const url = new URL(IMAGE_PATH, location.origin);
-    loadImage(url);
+    // 不再自动加载默认图片，等待用户选择
+    // const url = new URL(IMAGE_PATH, location.origin);
+    // loadImage(url);
 
-    // Load the Segment Anything pre-computed embedding
-    Promise.resolve(loadNpyTensor(IMAGE_EMBEDDING, "float32")).then(
-      (embedding) => setTensor(embedding)
-    );
+    // 不再自动加载默认的 embedding
+    // Promise.resolve(loadNpyTensor(IMAGE_EMBEDDING, "float32")).then(
+    //   (embedding) => setTensor(embedding)
+    // );
     
     // 初始化图数据 - 使用 StorylineDataManager
     const initGraph = async () => {

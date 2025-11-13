@@ -381,36 +381,49 @@ class StorylineDataManager {
     } else if ((fromType === 'S' && toType === 'S')) {
       relationName = 'S-S';
       // 印章图片路径 - 使用 PUBLIC_URL
+      const publicUrl = process.env.PUBLIC_URL || '';
+      
       url1 = similarityData.sealImage 
-        ? (similarityData.sealImage.startsWith('/assets/data/')
-           ? `${process.env.PUBLIC_URL}${similarityData.sealImage}`
-           : similarityData.sealImage.startsWith('../../assets/data/')
-             ? `${process.env.PUBLIC_URL}/assets/data/${similarityData.sealImage.replace('../../assets/data/', '')}`
-             : `${process.env.PUBLIC_URL}/assets/data/${similarityData.sealImage}`)
+        ? (similarityData.sealImage.startsWith('http') || similarityData.sealImage.startsWith(publicUrl)
+           ? similarityData.sealImage  // 已经是完整路径，直接使用
+           : similarityData.sealImage.startsWith('/assets/data/')
+             ? `${publicUrl}${similarityData.sealImage}`
+             : similarityData.sealImage.startsWith('../../assets/data/')
+               ? `${publicUrl}/assets/data/${similarityData.sealImage.replace('../../assets/data/', '')}`
+               : `${publicUrl}/assets/data/${similarityData.sealImage}`)
         : '';
       url2 = similarityData.sealImage2 
-        ? (similarityData.sealImage2.startsWith('/assets/data/')
-           ? `${process.env.PUBLIC_URL}${similarityData.sealImage2}`
-           : similarityData.sealImage2.startsWith('../../assets/data/')
-             ? `${process.env.PUBLIC_URL}/assets/data/${similarityData.sealImage2.replace('../../assets/data/', '')}`
-             : `${process.env.PUBLIC_URL}/assets/data/${similarityData.sealImage2}`)
+        ? (similarityData.sealImage2.startsWith('http') || similarityData.sealImage2.startsWith(publicUrl)
+           ? similarityData.sealImage2  // 已经是完整路径，直接使用
+           : similarityData.sealImage2.startsWith('/assets/data/')
+             ? `${publicUrl}${similarityData.sealImage2}`
+             : similarityData.sealImage2.startsWith('../../assets/data/')
+               ? `${publicUrl}/assets/data/${similarityData.sealImage2.replace('../../assets/data/', '')}`
+               : `${publicUrl}/assets/data/${similarityData.sealImage2}`)
         : '';
     } else if ((fromType === 'S' && toType === 'SS') || (fromType === 'SS' && toType === 'S')) {
       relationName = 'S-SS';
       // 印章与标准印的图片 - 使用 PUBLIC_URL
+      // 检查是否已经包含完整路径（以 http 或 process.env.PUBLIC_URL 开头）
+      const publicUrl = process.env.PUBLIC_URL || '';
+      
       url1 = similarityData.sealImage 
-        ? (similarityData.sealImage.startsWith('/assets/data/')
-           ? `${process.env.PUBLIC_URL}${similarityData.sealImage}`
-           : similarityData.sealImage.startsWith('../../assets/data/')
-             ? `${process.env.PUBLIC_URL}/assets/data/${similarityData.sealImage.replace('../../assets/data/', '')}`
-             : `${process.env.PUBLIC_URL}/assets/data/${similarityData.sealImage}`)
+        ? (similarityData.sealImage.startsWith('http') || similarityData.sealImage.startsWith(publicUrl)
+           ? similarityData.sealImage  // 已经是完整路径，直接使用
+           : similarityData.sealImage.startsWith('/assets/data/')
+             ? `${publicUrl}${similarityData.sealImage}`
+             : similarityData.sealImage.startsWith('../../assets/data/')
+               ? `${publicUrl}/assets/data/${similarityData.sealImage.replace('../../assets/data/', '')}`
+               : `${publicUrl}/assets/data/${similarityData.sealImage}`)
         : '';
       url2 = similarityData.standardSealImage 
-        ? (similarityData.standardSealImage.startsWith('/assets/data/')
-           ? `${process.env.PUBLIC_URL}${similarityData.standardSealImage}`
-           : similarityData.standardSealImage.startsWith('../../assets/data/')
-             ? `${process.env.PUBLIC_URL}/assets/data/${similarityData.standardSealImage.replace('../../assets/data/', '')}`
-             : `${process.env.PUBLIC_URL}/assets/data/${similarityData.standardSealImage}`)
+        ? (similarityData.standardSealImage.startsWith('http') || similarityData.standardSealImage.startsWith(publicUrl)
+           ? similarityData.standardSealImage  // 已经是完整路径，直接使用
+           : similarityData.standardSealImage.startsWith('/assets/data/')
+             ? `${publicUrl}${similarityData.standardSealImage}`
+             : similarityData.standardSealImage.startsWith('../../assets/data/')
+               ? `${publicUrl}/assets/data/${similarityData.standardSealImage.replace('../../assets/data/', '')}`
+               : `${publicUrl}/assets/data/${similarityData.standardSealImage}`)
         : '';
     }
     
