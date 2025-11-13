@@ -19,7 +19,7 @@ const Title = ({ onToggleFullGraph = null }) => {
     return (
         <div className="title-container">
             <div className="title-left">
-                <img src="./assets/img/logo.png" alt="Custom Icon" className="icon" />
+                <img src={`${process.env.PUBLIC_URL}/assets/img/logo.png`} alt="Custom Icon" className="icon" />
                 <span className="title">
                     Chinese Ancient Paintings Authentication Interactive Visualization System
                 </span>

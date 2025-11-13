@@ -224,7 +224,7 @@ const Storyline = ({ nodesData = [], linksData = [] }) => {
           // 添加路径前缀
           const fullSealImagePath = sealImagePath.startsWith('http') || sealImagePath.startsWith('data:') 
             ? sealImagePath 
-            : `../../assets/data/${sealImagePath}`;
+            : `${process.env.PUBLIC_URL}/assets/data/${sealImagePath}`;
           const owner = d.data?.owner || '石涛';
           const sealName = d.data?.sealName || d.data?.name || d.name;
           
@@ -238,7 +238,7 @@ const Storyline = ({ nodesData = [], linksData = [] }) => {
             <!-- 卡片内容 -->
             <div style="display: flex; flex-direction: row; align-items: center;">
               <div>
-                <img src="${fullSealImagePath}" alt="Seal Image" style="width: 100px; height: auto; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);" onerror="this.src='../../assets/img/seal.png'" />
+                <img src="${fullSealImagePath}" alt="Seal Image" style="width: 100px; height: auto; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);" onerror="this.src='${process.env.PUBLIC_URL}/assets/img/seal.png'" />
               </div>
               &nbsp;&nbsp;
               <div style="width: 250px; background-color:#f0f0f0; padding: 3px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
@@ -369,8 +369,8 @@ const Storyline = ({ nodesData = [], linksData = [] }) => {
       //图像切片连边（带翻页功能）
       const totalPages = similarities.length;
       const currentData = similarities[currentPage];
-      const image1 = currentData.url1 || '../../assets/img/test/L1.png';
-      const image2 = currentData.url2 || '../../assets/img/test/L1.png';
+      const image1 = currentData.url1 || `${process.env.PUBLIC_URL}/assets/img/test/L1.png`;
+      const image2 = currentData.url2 || `${process.env.PUBLIC_URL}/assets/img/test/L1.png`;
       const similar = currentData.similarity ? (currentData.similarity * 100).toFixed(1) + '%' : currentData.angle || 'N/A';
 
       customCardonArc1.html(`
@@ -393,7 +393,7 @@ const Storyline = ({ nodesData = [], linksData = [] }) => {
         box-shadow: 0 1px 3px rgba(0,0,0,0.2);
       " />
       <!-- 中间相似图标 -->
-      <img src="../../assets/img/similar.png" alt="Similar Icon" style="
+      <img src="${process.env.PUBLIC_URL}/assets/img/similar.png" alt="Similar Icon" style="
         width: 30px; 
         height: 30px;
         flex-shrink: 0;
@@ -412,7 +412,7 @@ const Storyline = ({ nodesData = [], linksData = [] }) => {
 
     <div style="display: flex; justify-content: space-between; align-items: center; background-color: #f0f0f0; border-radius: 5px; padding:3px">
       <!-- 下部左侧图片 -->
-      <img src="../../assets/img/rank.png" alt="Left Image" style="width: 35px; height: 35px; margin-left:30px" />
+      <img src="${process.env.PUBLIC_URL}/assets/img/rank.png" alt="Left Image" style="width: 35px; height: 35px; margin-left:30px" />
       
       <!-- 右侧文字，显示similarity和页码 -->
       <div style="margin-right: 40px; text-align: left;">
@@ -450,8 +450,8 @@ const Storyline = ({ nodesData = [], linksData = [] }) => {
     const updateCardContent2 = (similarities, currentPage = 0) => {
       const totalPages = similarities.length;
       const currentData = similarities[currentPage];
-      const image1 = currentData.url1 || '../../assets/img/test/L1.png';
-      const image2 = currentData.url2 || '../../assets/img/test/L1.png';
+      const image1 = currentData.url1 || `${process.env.PUBLIC_URL}/assets/img/test/L1.png`;
+      const image2 = currentData.url2 || `${process.env.PUBLIC_URL}/assets/img/test/L1.png`;
       const similar = currentData.similarity ? (currentData.similarity * 100).toFixed(1) + '%' : currentData.angle || 'N/A';
 
       customCardonArc2.html(`
@@ -474,7 +474,7 @@ const Storyline = ({ nodesData = [], linksData = [] }) => {
         box-shadow: 0 1px 3px rgba(0,0,0,0.2);
       " />
       <!-- 中间相似图标 -->
-      <img src="../../assets/img/similar.png" alt="Similar Icon" style="
+      <img src="${process.env.PUBLIC_URL}/assets/img/similar.png" alt="Similar Icon" style="
         width: 30px; 
         height: 30px;
         flex-shrink: 0;
@@ -493,7 +493,7 @@ const Storyline = ({ nodesData = [], linksData = [] }) => {
 
     <div style="display: flex; justify-content: space-between; align-items: center; background-color: #f0f0f0; border-radius: 5px; padding:3px">
       <!-- 下部左侧图片 -->
-      <img src="../../assets/img/rank2.png" alt="Left Image" style="width: 35px; height: 35px; margin-left:20px" />
+      <img src="${process.env.PUBLIC_URL}/assets/img/rank2.png" alt="Left Image" style="width: 35px; height: 35px; margin-left:20px" />
       
       <!-- 右侧文字，显示similarity和页码 -->
       <div style="margin-right: 10px; text-align: left;">
@@ -699,13 +699,13 @@ const Storyline = ({ nodesData = [], linksData = [] }) => {
         // 根据 d.info?.name 的值动态设置 src
         let iconSrc = ""; 
         if (d.info?.name === "P-S" || d.info?.name === "A-S"){
-          iconSrc = "../../assets/img/seal-red.png"  // 普通印章用红色
+          iconSrc = `${process.env.PUBLIC_URL}/assets/img/seal-red.png`  // 普通印章用红色
         }
         else if (d.info?.name === "SS-A"){
-          iconSrc = "../../assets/img/seal-blue.png"  // 标准印章用蓝色
+          iconSrc = `${process.env.PUBLIC_URL}/assets/img/seal-blue.png`  // 标准印章用蓝色
         }
         else{
-          iconSrc = "../../assets/img/seal-blue.png"  // 其他归属关系用蓝色
+          iconSrc = `${process.env.PUBLIC_URL}/assets/img/seal-blue.png`  // 其他归属关系用蓝色
         }
         return `
           <img src="${iconSrc}" alt="Icon" style="width: 20px; height: 20px; margin-left: 3px;" />
@@ -740,8 +740,8 @@ const Storyline = ({ nodesData = [], linksData = [] }) => {
       .html(d => {
         // 根据 d.info?.name 的值动态设置 src
         let iconSrc2 = d.info?.name === "P-R"
-          ? "../../assets/img/reference-blue.png"
-          : "../../assets/img/reference-green.png"; // 假设 P-S 使用红色图标
+          ? `${process.env.PUBLIC_URL}/assets/img/reference-blue.png`
+          : `${process.env.PUBLIC_URL}/assets/img/reference-green.png`; // 假设 P-S 使用红色图标
         return `
       <img src="${iconSrc2}" alt="Icon" style="width: 17px; height: 20px; margin-left: 3px;" />
     `;

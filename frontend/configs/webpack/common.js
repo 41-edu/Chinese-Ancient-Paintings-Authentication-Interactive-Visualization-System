@@ -94,5 +94,8 @@ module.exports = {
     new webpack.ProvidePlugin({
       process: "process/browser",
     }),
+    new webpack.DefinePlugin({
+      'process.env.PUBLIC_URL': JSON.stringify(process.env.PUBLIC_PATH || '/Chinese-Ancient-Paintings-Authentication-Interactive-Visualization-System'),
+    }),
   ],
 };

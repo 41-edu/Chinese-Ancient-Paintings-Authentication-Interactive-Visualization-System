@@ -57,7 +57,7 @@ class StorylineDataManager {
       category: 'A',
       name: authorInfo.name || '石涛',
       // 添加 Storyline 显示所需的字段
-      url: `/assets/data/${authorInfo.url}` || '/assets/img/person/石涛.png',
+      url: `${process.env.PUBLIC_URL}/assets/data/${authorInfo.url}` || `${process.env.PUBLIC_URL}/assets/img/person/石涛.png`,
       名字拼音: authorInfo.名字拼音 || 'Shi Tao',
       字号: authorInfo.字号 || '大涤子、清湘老人',
       所属朝代: authorInfo.所属朝代 || '清代',
@@ -95,7 +95,7 @@ class StorylineDataManager {
         displayName: paintingName || paintingId,
         category: 'P',
         name: paintingName || paintingId,
-        url: `/assets/data/Paintings_merged/${paintingId}.jpg`,
+        url: `${process.env.PUBLIC_URL}/assets/data/Paintings_merged/${paintingId}.jpg`,
         作者: '石涛',
         创作时间: '未知',
         用色: '未知',
@@ -113,7 +113,7 @@ class StorylineDataManager {
     const displayName = paintingInfo.总作品名 || paintingInfo.作品名 || paintingInfo.painting_name || paintingName || paintingId;
     
     // 图片路径：使用数据文件中的图像url字段(已统一为总图url)
-    const imageUrl = paintingInfo.图像url ? `/assets/data/${paintingInfo.图像url}` : `/assets/data/Paintings_merged/${paintingId}.jpg`;
+    const imageUrl = paintingInfo.图像url ? `${process.env.PUBLIC_URL}/assets/data/${paintingInfo.图像url}` : `${process.env.PUBLIC_URL}/assets/data/Paintings_merged/${paintingId}.jpg`;
     
     const paintingNode = {
       id: paintingId,
@@ -213,7 +213,7 @@ class StorylineDataManager {
       id: standardSealId,
       type: 'SS',
       label: standardSealInfo.name || standardSealId,  // 修正：使用 name 字段
-      url: `../../assets/data/${standardSealInfo.standard_image}`,  // 添加图片URL
+      url: `${process.env.PUBLIC_URL}/assets/data/${standardSealInfo.standard_image}`,  // 添加图片URL
       data: {
         ...standardSealInfo,
         standardSealImage: standardSealInfo.standard_image  // 添加图片路径
@@ -376,43 +376,41 @@ class StorylineDataManager {
     if (fromType === 'P' && toType === 'P') {
       relationName = 'P-P';
       // 切片图片路径
-      url1 = similarityData.segmentPath ? `/assets/data/${similarityData.segmentPath}` : '';
-      url2 = similarityData.similarSegmentPath ? `/assets/data/${similarityData.similarSegmentPath}` : '';
+      url1 = similarityData.segmentPath ? `${process.env.PUBLIC_URL}/assets/data/${similarityData.segmentPath}` : '';
+      url2 = similarityData.similarSegmentPath ? `${process.env.PUBLIC_URL}/assets/data/${similarityData.similarSegmentPath}` : '';
     } else if ((fromType === 'S' && toType === 'S')) {
       relationName = 'S-S';
-      // 印章图片路径 - 处理路径前缀
-      // 如果已经是完整路径（/assets/data/ 或 ../../assets/data/），直接使用
-      // 否则添加 ../../assets/data/ 前缀
+      // 印章图片路径 - 使用 PUBLIC_URL
       url1 = similarityData.sealImage 
         ? (similarityData.sealImage.startsWith('/assets/data/')
-           ? `../..${similarityData.sealImage}`  // /assets/data/xxx -> ../../assets/data/xxx
+           ? `${process.env.PUBLIC_URL}${similarityData.sealImage}`
            : similarityData.sealImage.startsWith('../../assets/data/')
-             ? similarityData.sealImage 
-             : `../../assets/data/${similarityData.sealImage}`)
+             ? `${process.env.PUBLIC_URL}/assets/data/${similarityData.sealImage.replace('../../assets/data/', '')}`
+             : `${process.env.PUBLIC_URL}/assets/data/${similarityData.sealImage}`)
         : '';
       url2 = similarityData.sealImage2 
         ? (similarityData.sealImage2.startsWith('/assets/data/')
-           ? `../..${similarityData.sealImage2}`  // /assets/data/xxx -> ../../assets/data/xxx
+           ? `${process.env.PUBLIC_URL}${similarityData.sealImage2}`
            : similarityData.sealImage2.startsWith('../../assets/data/')
-             ? similarityData.sealImage2 
-             : `../../assets/data/${similarityData.sealImage2}`)
+             ? `${process.env.PUBLIC_URL}/assets/data/${similarityData.sealImage2.replace('../../assets/data/', '')}`
+             : `${process.env.PUBLIC_URL}/assets/data/${similarityData.sealImage2}`)
         : '';
     } else if ((fromType === 'S' && toType === 'SS') || (fromType === 'SS' && toType === 'S')) {
       relationName = 'S-SS';
-      // 印章与标准印的图片 - 处理路径前缀
+      // 印章与标准印的图片 - 使用 PUBLIC_URL
       url1 = similarityData.sealImage 
         ? (similarityData.sealImage.startsWith('/assets/data/')
-           ? `../..${similarityData.sealImage}`  // /assets/data/xxx -> ../../assets/data/xxx
+           ? `${process.env.PUBLIC_URL}${similarityData.sealImage}`
            : similarityData.sealImage.startsWith('../../assets/data/')
-             ? similarityData.sealImage 
-             : `../../assets/data/${similarityData.sealImage}`)
+             ? `${process.env.PUBLIC_URL}/assets/data/${similarityData.sealImage.replace('../../assets/data/', '')}`
+             : `${process.env.PUBLIC_URL}/assets/data/${similarityData.sealImage}`)
         : '';
       url2 = similarityData.standardSealImage 
         ? (similarityData.standardSealImage.startsWith('/assets/data/')
-           ? `../..${similarityData.standardSealImage}`
+           ? `${process.env.PUBLIC_URL}${similarityData.standardSealImage}`
            : similarityData.standardSealImage.startsWith('../../assets/data/')
-             ? similarityData.standardSealImage 
-             : `../../assets/data/${similarityData.standardSealImage}`)
+             ? `${process.env.PUBLIC_URL}/assets/data/${similarityData.standardSealImage.replace('../../assets/data/', '')}`
+             : `${process.env.PUBLIC_URL}/assets/data/${similarityData.standardSealImage}`)
         : '';
     }
     
