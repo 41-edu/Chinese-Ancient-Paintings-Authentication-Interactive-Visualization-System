@@ -245,15 +245,15 @@ const App = () => {
     
     console.log('✅ 图谱已更新: 石涛 + ' + selectedImage.id + ', 节点数:', updatedGraph.nodes.length);
     
-    // 使用 JSON 中的图像url路径
-    const imagePath = `/assets/data/${selectedImage.path.replace('../../assets/data/', '')}`;
+    // 使用图片选择器提供的完整路径（已包含 PUBLIC_URL）
+    const imagePath = selectedImage.path;
     const url = new URL(imagePath, location.origin);
     
     // 加载新图片
     loadImage(url);
     
     // 加载对应的 NPY 文件 (Paintings_npy 中的同名文件)
-    const npyPath = `/assets/data/Paintings_npy/${selectedImage.id}.npy`;
+    const npyPath = `${process.env.PUBLIC_URL}/assets/data/Paintings_npy/${selectedImage.id}.npy`;
     console.log('📦 正在加载 NPY 文件:', npyPath);
     
     Promise.resolve(loadNpyTensor(npyPath, "float32")).then(
