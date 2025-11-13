@@ -24,9 +24,9 @@ import FullAnswerPanel from "./components/authentication/FullAnswerPanel"
 import { stageFocusManager } from './components/Stage';
 import StorylineDataManager from "./components/authentication/StorylineDataManager";
 // Define image, embedding and model paths
-const IMAGE_PATH = "/assets/data/D011518.jpg";
-const IMAGE_EMBEDDING = "/assets/data/D011518.npy";
-const MODEL_DIR = "/model/sam_onnx_example.onnx";
+const IMAGE_PATH = `${process.env.PUBLIC_URL}/assets/data/D011518.jpg`;
+const IMAGE_EMBEDDING = `${process.env.PUBLIC_URL}/assets/data/D011518.npy`;
+const MODEL_DIR = `${process.env.PUBLIC_URL}/model/sam_onnx_example.onnx`;
 
 const App = () => {
   const {
